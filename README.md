@@ -1,5 +1,7 @@
 # shapeshift-scala
 
+[![Build Status](https://travis-ci.org/alexdupre/shapeshift-scala.png?branch=master)](https://travis-ci.org/alexdupre/shapeshift-scala)
+
 An asynchronous / non-blocking Scala library for the ShapeShift API.
 
 ## Artifacts
@@ -9,13 +11,19 @@ and Play-WS, two well known HTTP Scala libraries, to fit every scenario.
 
 Choose the appropriate artifact based on your needs:
 
-| Artifact                | HTTP Provider   | AHC   | Netty   | Play-JSON |
+| Artifact Id             | HTTP Provider   | AHC   | Netty   | Play-JSON |
 | ----------------------- | --------------- | ----- | ------- | --------- |
 | shapeshift-dispatch0112 | Dispatch 0.11.2 | 1.8.x | 3.9.x   | 2.3.x     |
 | shapeshift-dispatch0113 | Dispatch 0.11.3 | 1.9.x | 3.10.x  | 2.4.x     |
 | shapeshift-playws23     | Play WS 2.3.x   | 1.8.x | 3.9.x   | 2.3.x     |
 | shapeshift-playws24     | Play WS 2.4.x   | 1.9.x | 3.10.x  | 2.4.x     |
 | shapeshift-playws25     | Play WS 2.5.x   | 2.0.x | 4.0.x   | 2.5.x     |
+
+and then, if you're using SBT, add the following line to your build file:
+
+```scala
+libraryDependencies += "com.alexdupre.shapeshift" %% "<artifactId>" % "1.0"
+```
 
 ## Initialization
 

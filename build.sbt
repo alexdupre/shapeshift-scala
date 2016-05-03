@@ -1,10 +1,10 @@
 lazy val commonSettings = Seq(
-  organization := "com.alexdupre",
-  version := "0.9.0-SNAPSHOT",
+  organization := "com.alexdupre.shapeshift",
+  version := "1.0",
   scalaVersion := "2.11.8",
   scalacOptions ++= List("-feature", "-unchecked", "-deprecation", "-explaintypes", "-encoding", "UTF8", "-Xlint", "-language:_"),
   buildInfoKeys := Seq[BuildInfoKey](version),
-  buildInfoPackage := s"${organization.value}.shapeshift",
+  buildInfoPackage := organization.value,
   resolvers += Resolver.typesafeRepo("releases"),
   libraryDependencies ++= List(
     "org.slf4j" % "slf4j-api" % "1.7.21",
@@ -13,7 +13,36 @@ lazy val commonSettings = Seq(
   ),
   unmanagedSourceDirectories in Compile += baseDirectory.value / ".." / "common" / "src" / "main" / "scala",
   unmanagedSourceDirectories in Test += baseDirectory.value / ".." / "common" / "src" / "test" / "scala",
-  unmanagedResourceDirectories in Test += baseDirectory.value / ".." / "common" / "src" / "test" / "resources"
+  unmanagedResourceDirectories in Test += baseDirectory.value / ".." / "common" / "src" / "test" / "resources",
+  publishMavenStyle := true,
+  publishTo := {
+    val nexus = "https://oss.sonatype.org/"
+    if (isSnapshot.value)
+      Some("snapshots" at nexus + "content/repositories/snapshots")
+    else
+      Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+  },
+  pomIncludeRepository := { _ => false },
+  pomExtra := (
+    <url>https://github.com/alexdupre/shapeshift-scala</url>
+    <licenses>
+      <license>
+        <name>BSD-style</name>
+        <url>http://www.opensource.org/licenses/bsd-license.php</url>
+        <distribution>repo</distribution>
+      </license>
+    </licenses>
+    <scm>
+      <url>git@github.com:alexdupre/shapeshift-scala.git</url>
+      <connection>scm:git:git@github.com:alexdupre/shapeshift-scala.git</connection>
+    </scm>
+    <developers>
+      <developer>
+        <id>alexdupre</id>
+        <name>Alex Dupre</name>
+        <url>http://www.alexdupre.com</url>
+      </developer>
+    </developers>)
 )
 
 def provider(id: String) = Project(id, file(id)).
