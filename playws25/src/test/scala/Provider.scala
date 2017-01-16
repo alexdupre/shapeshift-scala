@@ -7,9 +7,9 @@ import scala.concurrent.ExecutionContext.Implicits.global
 
 trait Provider extends ShapeShift {
 
-  implicit val actorSystem = ActorSystem()
+  implicit val actorSystem       = ActorSystem()
   implicit val actorMaterializer = ActorMaterializer()
-  val ws = AhcWSClient()
+  val ws                         = AhcWSClient()
 
   override def getClient() = ShapeShiftPlayProvider.newClient(ws)
 

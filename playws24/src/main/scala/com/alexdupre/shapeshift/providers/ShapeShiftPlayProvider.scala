@@ -25,7 +25,7 @@ class ShapeShiftPlayProvider(http: WSClient)(implicit ec: ExecutionContext) exte
       val js = try {
         r.json
       } catch {
-        case e : Exception => sys.error("ShapeShift Protocol Exception")
+        case e: Exception => sys.error("ShapeShift Protocol Exception")
       }
       ProviderResponse(r.status, js)
     } recover {
@@ -44,11 +44,12 @@ object ShapeShiftPlayProvider {
     new ShapeShiftClient(new ShapeShiftPlayProvider(http))
 
   lazy val defaultHttp = {
-    val config = NingWSClientConfig(wsClientConfig = WSClientConfig(
-      connectionTimeout = 5.seconds,
-      idleTimeout = 30.seconds,
-      requestTimeout = 60.seconds
-    ))
+    val config = NingWSClientConfig(
+      wsClientConfig = WSClientConfig(
+        connectionTimeout = 5.seconds,
+        idleTimeout = 30.seconds,
+        requestTimeout = 60.seconds
+      ))
     new NingWSClient(new NingAsyncHttpClientConfigBuilder(config).build())
   }
 

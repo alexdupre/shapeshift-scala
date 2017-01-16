@@ -26,10 +26,12 @@ trait ShapeShift {
     }
   }
 
-  val btcAddress = "1DJ28uXT5pMHx4uWurEa8ZVTfyWVBCzm6E"
-  val ethAddress = "0xf6287ad45d37bccf56ee950301c6959966757b1d"
-  val ltcAddress = "LXXTzTVFjiumz1H5xL6nvfmChzDNe46WKZ"
-  val xmrAddress = "48xu85vn4AuP9aaCcZM9WLchue3jicJQKjMEU9HkDHmLV5d24CeCUf3dvFTRuvtKxh9xotZdZBMNBX2qyvieRcJ8CwEFsrL"
+  val btcAddress   = "1DJ28uXT5pMHx4uWurEa8ZVTfyWVBCzm6E"
+  val ethAddress   = "0xf6287ad45d37bccf56ee950301c6959966757b1d"
+  val ltcAddress   = "LXXTzTVFjiumz1H5xL6nvfmChzDNe46WKZ"
+  val xmrAddress   = "48xu85vn4AuP9aaCcZM9WLchue3jicJQKjMEU9HkDHmLV5d24CeCUf3dvFTRuvtKxh9xotZdZBMNBX2qyvieRcJ8CwEFsrL"
   val xmrPaymentId = "c278c1a9a026a80b869b6ff4d84e7c61327e48d70e8dbd7897b40d6ed05e28ed"
+  val steemAddress = "11de58d692aff744"
+  val xrpAddress   = "rn2PW6QhD9eWYa7m57m5LgNMKFSG3H7tiD"
 
 }

@@ -18,7 +18,7 @@ class ShapeShiftDispatchProvider(http: Http)(implicit ec: ExecutionContext) exte
 
   override def post(endpoint: String, params: JsValue): Future[ProviderResponse] = {
     val payload = Json.stringify(params)
-    val req = url(endpoint).POST.setBody(payload).setContentType("application/json", "UTF-8")
+    val req     = url(endpoint).POST.setBody(payload).setContentType("application/json", "UTF-8")
     execute(req)
   }
 
@@ -27,7 +27,7 @@ class ShapeShiftDispatchProvider(http: Http)(implicit ec: ExecutionContext) exte
       val js = try {
         Json.parse(r.getResponseBodyAsBytes)
       } catch {
-        case e : Exception => sys.error("ShapeShift Protocol Exception")
+        case e: Exception => sys.error("ShapeShift Protocol Exception")
       }
       ProviderResponse(r.getStatusCode, js)
     } recover {
@@ -44,12 +44,11 @@ object ShapeShiftDispatchProvider {
   lazy val defaultHttp = {
     val nettyConfig = new NettyAsyncHttpProviderConfig
     nettyConfig.setHandshakeTimeout(5000)
-    Http.configure(_
-      .setUserAgent(s"AlexDupre-ShapeShift/${BuildInfo.version}")
-      .setRequestTimeout(30000)
-      .setConnectTimeout(5000)
-      .setAsyncHttpClientProviderConfig(nettyConfig)
-    )
+    Http.configure(
+      _.setUserAgent(s"AlexDupre-ShapeShift/${BuildInfo.version}")
+        .setRequestTimeout(30000)
+        .setConnectTimeout(5000)
+        .setAsyncHttpClientProviderConfig(nettyConfig))
   }
 
 }

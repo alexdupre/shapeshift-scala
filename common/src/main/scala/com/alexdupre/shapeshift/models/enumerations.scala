@@ -5,7 +5,7 @@ import play.api.libs.json._
 object Availability extends Enumeration {
   type Availability = Value
 
-  val Available = Value("available")
+  val Available   = Value("available")
   val Unavailable = Value("unavailable")
 
   implicit val format = Format(Enumeration.reads(Availability), Enumeration.writes)
@@ -15,9 +15,9 @@ object OrderStatus extends Enumeration {
   type OrderStatus = Value
 
   val NoDeposits = Value("no_deposits")
-  val Expired = Value("expired")
-  val Received = Value("received")
-  val Complete = Value("complete")
+  val Expired    = Value("expired")
+  val Received   = Value("received")
+  val Complete   = Value("complete")
 
   implicit val format = Format(Enumeration.reads(OrderStatus), Enumeration.writes)
 }

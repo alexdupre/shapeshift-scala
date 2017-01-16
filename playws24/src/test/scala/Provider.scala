@@ -1,4 +1,3 @@
-
 import com.alexdupre.shapeshift.providers.ShapeShiftPlayProvider
 
 import scala.concurrent.ExecutionContext.Implicits.global

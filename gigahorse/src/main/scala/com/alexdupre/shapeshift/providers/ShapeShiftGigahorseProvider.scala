@@ -20,8 +20,8 @@ class ShapeShiftGigahorseProvider(http: HttpClient)(implicit ec: ExecutionContex
 
   override def post(endpoint: String, params: JsValue): Future[ProviderResponse] = {
     val payload = Json.stringify(params)
-    val utf8 = Charset.forName("UTF-8")
-    val req = Gigahorse.url(endpoint).withContentType("application/json", utf8).post(payload, utf8)
+    val utf8    = Charset.forName("UTF-8")
+    val req     = Gigahorse.url(endpoint).withContentType("application/json", utf8).post(payload, utf8)
     execute(req)
   }
 
@@ -30,7 +30,7 @@ class ShapeShiftGigahorseProvider(http: HttpClient)(implicit ec: ExecutionContex
       val js = try {
         Json.parse(r.bodyAsString)
       } catch {
-        case e : Exception => sys.error("ShapeShift Protocol Exception")
+        case e: Exception => sys.error("ShapeShift Protocol Exception")
       }
       ProviderResponse(r.status, js)
     } recover {
@@ -42,8 +42,7 @@ class ShapeShiftGigahorseProvider(http: HttpClient)(implicit ec: ExecutionContex
 object ShapeShiftGigahorseProvider {
 
   def newClient(http: HttpClient = defaultHttp)(implicit ec: ExecutionContext) =
-
-  new ShapeShiftClient(new ShapeShiftGigahorseProvider(defaultHttp))
+    new ShapeShiftClient(new ShapeShiftGigahorseProvider(defaultHttp))
 
   lazy val defaultHttp = {
     val config = Gigahorse.config

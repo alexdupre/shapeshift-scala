@@ -23,7 +23,7 @@ class ShapeShiftPlayProvider(http: WSClient)(implicit ec: ExecutionContext) exte
       val js = try {
         r.json
       } catch {
-        case e : Exception => sys.error("ShapeShift Protocol Exception")
+        case e: Exception => sys.error("ShapeShift Protocol Exception")
       }
       ProviderResponse(r.status, js)
     } recover {

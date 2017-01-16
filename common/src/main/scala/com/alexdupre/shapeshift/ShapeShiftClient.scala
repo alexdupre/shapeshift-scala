@@ -8,7 +8,8 @@ import play.api.libs.json._
 import scala.concurrent.{ExecutionContext, Future}
 import scala.language.{postfixOps, reflectiveCalls}
 
-class ShapeShiftClient(provider: ProviderAPI, pubApiKey: String = ShapeShiftClient.pubApiKey)(implicit ec: ExecutionContext) extends ShapeShiftAPI {
+class ShapeShiftClient(provider: ProviderAPI, pubApiKey: String = ShapeShiftClient.pubApiKey)(implicit ec: ExecutionContext)
+    extends ShapeShiftAPI {
 
   val logger = LoggerFactory.getLogger(classOf[ShapeShiftClient])
 
@@ -33,19 +34,21 @@ class ShapeShiftClient(provider: ProviderAPI, pubApiKey: String = ShapeShiftClie
     logger.trace(s"Response:\n${Json.prettyPrint(js)}")
     if (response.status == 200) {
       val jsres = js match {
-        case o: JsObject => o.value.get("error") match {
-          case Some(JsString(error)) => throw new ShapeShiftException(error)
-          case _ => (if (encapsulated) o.value.get("success") else Some(js)) match {
-            case Some(value) => value.validate[T]
-            case _ => throw new RuntimeException("ShapeShift Protocol Exception")
+        case o: JsObject =>
+          o.value.get("error") match {
+            case Some(JsString(error)) => throw new ShapeShiftException(error)
+            case _ =>
+              (if (encapsulated) o.value.get("success") else Some(js)) match {
+                case Some(value) => value.validate[T]
+                case _           => throw new RuntimeException("ShapeShift Protocol Exception")
+              }
           }
-        }
         case a: JsArray => a.validate[T]
-        case _ => throw new RuntimeException("ShapeShift Protocol Exception")
+        case _          => throw new RuntimeException("ShapeShift Protocol Exception")
       }
       jsres match {
         case JsSuccess(r, _) => r
-        case JsError(e) => throw new RuntimeException("ShapeShift Parser Exception", new JsResultException(e))
+        case JsError(e)      => throw new RuntimeException("ShapeShift Parser Exception", new JsResultException(e))
 
       }
     } else {
@@ -79,39 +82,50 @@ class ShapeShiftClient(provider: ProviderAPI, pubApiKey: String = ShapeShiftClie
     get[JsObject](s"validateAddress/$address/$coin").map(_ => ())
   }
 
-  override def createOpenTransaction(market: Market, outputAddress: String, outputSpecial: Option[(String, String)] = None, returnAddress: Option[String] = None): Future[OpenOrder] = {
+  override def createOpenTransaction(market: Market,
+                                     outputAddress: String,
+                                     outputSpecial: Option[(String, String)] = None,
+                                     returnAddress: Option[String] = None): Future[OpenOrder] = {
     val req = Json.obj(
-      "pair" -> market,
-      "withdrawal" -> outputAddress,
-      "returnAddress" -> returnAddress,
-      "apiKey" -> pubApiKey
-    ) ++ outputSpecial.fold(Json.obj()) {
+        "pair"          -> market,
+        "withdrawal"    -> outputAddress,
+        "returnAddress" -> returnAddress,
+        "apiKey"        -> pubApiKey
+      ) ++ outputSpecial.fold(Json.obj()) {
       case (key, value) => Json.obj(key -> value)
     }
     post[OpenOrder]("shift", req)
   }
 
-  override def createFixedInputTransaction(market: Market, inputAmount: BigDecimal, outputAddress: String, outputSpecial: Option[(String, String)] = None, returnAddress: Option[String] = None): Future[Order] = {
+  override def createFixedInputTransaction(market: Market,
+                                           inputAmount: BigDecimal,
+                                           outputAddress: String,
+                                           outputSpecial: Option[(String, String)] = None,
+                                           returnAddress: Option[String] = None): Future[Order] = {
     val req = Json.obj(
-      "pair" -> market,
-      "depositAmount" -> inputAmount,
-      "withdrawal" -> outputAddress,
-      "returnAddress" -> returnAddress,
-      "apiKey" -> pubApiKey
-    ) ++ outputSpecial.fold(Json.obj()) {
+        "pair"          -> market,
+        "depositAmount" -> inputAmount,
+        "withdrawal"    -> outputAddress,
+        "returnAddress" -> returnAddress,
+        "apiKey"        -> pubApiKey
+      ) ++ outputSpecial.fold(Json.obj()) {
       case (key, value) => Json.obj(key -> value)
     }
     post[Order]("sendamount", req, true)
   }
 
-  override def createFixedOutputTransaction(market: Market, outputAmount: BigDecimal, outputAddress: String, outputSpecial: Option[(String, String)] = None, returnAddress: Option[String] = None): Future[Order] = {
+  override def createFixedOutputTransaction(market: Market,
+                                            outputAmount: BigDecimal,
+                                            outputAddress: String,
+                                            outputSpecial: Option[(String, String)] = None,
+                                            returnAddress: Option[String] = None): Future[Order] = {
     val req = Json.obj(
-      "pair" -> market,
-      "amount" -> outputAmount,
-      "withdrawal" -> outputAddress,
-      "returnAddress" -> returnAddress,
-      "apiKey" -> pubApiKey
-    ) ++ outputSpecial.fold(Json.obj()) {
+        "pair"          -> market,
+        "amount"        -> outputAmount,
+        "withdrawal"    -> outputAddress,
+        "returnAddress" -> returnAddress,
+        "apiKey"        -> pubApiKey
+      ) ++ outputSpecial.fold(Json.obj()) {
       case (key, value) => Json.obj(key -> value)
     }
     post[Order]("sendamount", req, true)
@@ -119,7 +133,7 @@ class ShapeShiftClient(provider: ProviderAPI, pubApiKey: String = ShapeShiftClie
 
   override def quoteFixedInputTransaction(market: Market, inputAmount: BigDecimal): Future[Quote] = {
     val req = Json.obj(
-      "pair" -> market,
+      "pair"          -> market,
       "depositAmount" -> inputAmount
     )
     post[Quote]("sendamount", req, true)
@@ -127,7 +141,7 @@ class ShapeShiftClient(provider: ProviderAPI, pubApiKey: String = ShapeShiftClie
 
   override def quoteFixedOutputTransaction(market: Market, outputAmount: BigDecimal): Future[Quote] = {
     val req = Json.obj(
-      "pair" -> market,
+      "pair"   -> market,
       "amount" -> outputAmount
     )
     post[Quote]("sendamount", req, true)
@@ -141,6 +155,7 @@ class ShapeShiftClient(provider: ProviderAPI, pubApiKey: String = ShapeShiftClie
 
 object ShapeShiftClient {
 
-  val pubApiKey = "5e2d0e481642e21d2252704ebd4a370efbe50037475544ea599bee265658b555010adc69ef4415c4c3d8fe3be62587b05157bd559adcd8609fd54a731a87094a"
+  val pubApiKey =
+    "5e2d0e481642e21d2252704ebd4a370efbe50037475544ea599bee265658b555010adc69ef4415c4c3d8fe3be62587b05157bd559adcd8609fd54a731a87094a"
 
 }
