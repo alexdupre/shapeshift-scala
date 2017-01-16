@@ -1,6 +1,6 @@
 lazy val commonSettings = Seq(
   organization := "com.alexdupre.shapeshift",
-  version := "1.0",
+  version := "1.1",
   scalaVersion := "2.11.8",
   scalacOptions ++= List("-feature", "-unchecked", "-deprecation", "-explaintypes", "-encoding", "UTF8", "-Xlint", "-language:_"),
   buildInfoKeys := Seq[BuildInfoKey](version),
