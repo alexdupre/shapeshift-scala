@@ -5,51 +5,48 @@ import play.api.libs.json.{Format, JsValue, Json, Reads}
 
 sealed trait OrderInfo {
   def status: OrderStatus
-}
-
-sealed trait OrderNoDeposit {
-  def incomingCoin: Coin
-  def deposit: String
-  def incomingCoinInfo: CoinInfo
-  def outgoingCoin: Coin
-  def withdrawal: String
-  def outgoingCoinInfo: CoinInfo
-}
-
-sealed trait OrderWithDeposit {
-  def orderId: String
   def incomingType: Coin
-  def deposit: String
   def incomingCoin: BigDecimal
   def incomingCoinInfo: CoinInfo
+  def outgoingType: Coin
+  def outgoingCoin: BigDecimal
+  def outgoingCoinInfo: CoinInfo
+  def deposit: String
 }
 
 case class OpenOrderNoDeposit(status: OrderStatus,
-                              incomingCoin: Coin, deposit: String, incomingCoinInfo: CoinInfo,
-                              outgoingCoin: Coin, withdrawal: String, outgoingCoinInfo: CoinInfo
-                             ) extends OrderInfo with OrderNoDeposit
+                              incomingType: Coin, incomingCoin: BigDecimal, incomingCoinInfo: CoinInfo,
+                              outgoingType: Coin, outgoingCoin: BigDecimal, outgoingCoinInfo: CoinInfo,
+                              deposit: String, withdrawal: String
+                             ) extends OrderInfo
 
 case class FixedOrderNoDeposit(status: OrderStatus,
-                               incomingCoin: Coin, deposit: String, incomingCoinInfo: CoinInfo, depositAmount: BigDecimal,
-                               outgoingCoin: Coin, withdrawal: String, outgoingCoinInfo: CoinInfo, withdrawalAmount: BigDecimal,
+                               incomingType: Coin, incomingCoin: BigDecimal, incomingCoinInfo: CoinInfo,
+                               outgoingType: Coin, outgoingCoin: BigDecimal, outgoingCoinInfo: CoinInfo,
+                               deposit: String, withdrawal: String,
                                timeRemaining: BigDecimal, rate: BigDecimal
-                              ) extends OrderInfo with OrderNoDeposit
+                              ) extends OrderInfo
 
 case class OrderExpired(status: OrderStatus,
-                        incomingCoin: Coin, deposit: String, incomingCoinInfo: CoinInfo, depositAmount: BigDecimal,
-                        outgoingCoin: Coin, withdrawal: String, outgoingCoinInfo: CoinInfo, withdrawalAmount: BigDecimal,
+                        incomingType: Coin, incomingCoin: BigDecimal, incomingCoinInfo: CoinInfo,
+                        outgoingType: Coin, outgoingCoin: BigDecimal, outgoingCoinInfo: CoinInfo,
+                        deposit: String, withdrawal: String,
                         timeRemaining: BigDecimal, rate: BigDecimal
-                       ) extends OrderInfo with OrderNoDeposit
+                       ) extends OrderInfo
 
 case class OrderReceived(orderId: String, status: OrderStatus,
-                         incomingType: Coin, deposit: String, incomingCoinInfo: CoinInfo, incomingCoin: BigDecimal
-                        ) extends OrderInfo with OrderWithDeposit
+                         incomingType: Coin, incomingCoin: BigDecimal, incomingCoinInfo: CoinInfo,
+                         outgoingType: Coin, outgoingCoin: BigDecimal, outgoingCoinInfo: CoinInfo,
+                         deposit: String
+                        ) extends OrderInfo
 
 case class OrderComplete(orderId: String, status: OrderStatus,
-                         incomingType: Coin, deposit: String, incomingCoinInfo: CoinInfo, incomingCoin: BigDecimal,
-                         outgoingType: Coin, withdraw: String, outgoingCoinInfo: CoinInfo, outgoingCoin: BigDecimal,
-                         rate: BigDecimal, transaction: String, transactionURL: String
-                        ) extends OrderInfo with OrderWithDeposit
+                         incomingType: Coin, incomingCoin: BigDecimal, incomingCoinInfo: CoinInfo,
+                         outgoingType: Coin, outgoingCoin: BigDecimal, outgoingCoinInfo: CoinInfo,
+                         deposit: String, withdraw: String,
+                         rate: BigDecimal,
+                         transaction: String, transactionURL: String
+                        ) extends OrderInfo
 
 object OrderInfo {
 

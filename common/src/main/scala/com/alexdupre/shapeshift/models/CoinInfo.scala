@@ -7,6 +7,7 @@ case class CoinInfo(name: String, symbol: Coin, image: String, status: Availabil
                     specialReturn: Option[Boolean],
                     specialOutgoing: Option[Boolean],
                     specialIncoming: Option[Boolean],
+                    specialIncomingStatus: Option[Boolean],
                     fieldName: Option[String],
                     fieldKey: Option[String],
                     qrName: Option[String])

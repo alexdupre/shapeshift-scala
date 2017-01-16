@@ -9,7 +9,8 @@ case class Order(orderId: String, pair: Market, sAddress: Option[String],
                  withdrawal: String, withdrawalAmount: BigDecimal,
                  returnAddress: Option[String],
                  expiration: Instant, quotedRate: BigDecimal,
-                 maxLimit: BigDecimal, minerFee: BigDecimal)
+                 maxLimit: BigDecimal, minerFee: BigDecimal,
+                 xrpDestTag: Option[String], public: Option[String])
 
 object Order {
 

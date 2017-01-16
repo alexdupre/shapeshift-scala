@@ -5,7 +5,8 @@ import play.api.libs.json.Json
 case class OpenOrder(orderId: String, sAddress: Option[String],
                      deposit: String, depositType: Coin,
                      withdrawal: String, withdrawalType: Coin,
-                     returnAddress: String, returnAddressType: Coin)
+                     returnAddress: Option[String], returnAddressType: Option[Coin],
+                     xrpDestTag: Option[String], public: Option[String])
 
 object OpenOrder {
 
