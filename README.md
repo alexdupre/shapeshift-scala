@@ -6,8 +6,9 @@ An asynchronous / non-blocking Scala library for the ShapeShift API.
 
 ## Artifacts
 
-The library is cross-compiled with different versions of Dispatch-Reboot
-and Play-WS, two well known HTTP Scala libraries, to fit every scenario.
+The library is cross-compiled with different versions of Dispatch-Reboot,
+Gigahorse and Play-WS, three well known HTTP Scala libraries,
+to fit every scenario.
 
 Choose the appropriate artifact based on your needs:
 
@@ -15,6 +16,7 @@ Choose the appropriate artifact based on your needs:
 | ----------------------- | --------------- | ----- | ------- | --------- |
 | shapeshift-dispatch0112 | Dispatch 0.11.2 | 1.8.x | 3.9.x   | 2.3.x     |
 | shapeshift-dispatch0113 | Dispatch 0.11.3 | 1.9.x | 3.10.x  | 2.4.x     |
+| shapeshift-gigahorse    | Gigahorse 0.2.x | 2.0.x | 4.0.x   | 2.5.x     |
 | shapeshift-playws23     | Play WS 2.3.x   | 1.8.x | 3.9.x   | 2.3.x     |
 | shapeshift-playws24     | Play WS 2.4.x   | 1.9.x | 3.10.x  | 2.4.x     |
 | shapeshift-playws25     | Play WS 2.5.x   | 2.0.x | 4.0.x   | 2.5.x     |
@@ -22,7 +24,7 @@ Choose the appropriate artifact based on your needs:
 and then, if you're using SBT, add the following line to your build file:
 
 ```scala
-libraryDependencies += "com.alexdupre.shapeshift" %% "<artifactId>" % "1.0"
+libraryDependencies += "com.alexdupre.shapeshift" %% "<artifactId>" % "1.1"
 ```
 
 ## Initialization
@@ -37,6 +39,15 @@ import com.alexdupre.shapeshift.ShapeShiftAPI
 import com.alexdupre.shapeshift.provider.ShapeShiftDispatchProvider
 
 val client: ShapeShiftAPI = ShapeShiftDispatchProvider.newClient()
+```
+
+For Gigahorse:
+
+```scala
+import com.alexdupre.shapeshift.ShapeShiftAPI
+import com.alexdupre.shapeshift.provider.ShapeShiftGigahorseProvider
+
+val client: ShapeShiftAPI = ShapeShiftGigahorseProvider.newClient()
 ```
 
 For Play:
