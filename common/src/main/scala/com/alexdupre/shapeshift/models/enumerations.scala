@@ -14,10 +14,11 @@ object Availability extends Enumeration {
 object OrderStatus extends Enumeration {
   type OrderStatus = Value
 
-  val NoDeposits = Value("no_deposits")
-  val Expired    = Value("expired")
-  val Received   = Value("received")
-  val Complete   = Value("complete")
+  val NoDeposits     = Value("no_deposits")
+  val Expired        = Value("expired")
+  val Received       = Value("received")
+  val Complete       = Value("complete")
+  val ContactSupport = Value("contact_support")
 
   implicit val format = Format(Enumeration.reads(OrderStatus), Enumeration.writes)
 }

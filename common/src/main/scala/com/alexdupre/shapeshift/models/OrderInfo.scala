@@ -1,7 +1,7 @@
 package com.alexdupre.shapeshift.models
 
 import com.alexdupre.shapeshift.models.OrderStatus.OrderStatus
-import play.api.libs.json.{Format, JsValue, Json, Reads}
+import play.api.libs.json.{Format, JsValue, Json}
 
 sealed trait OrderInfo {
   def status: OrderStatus
@@ -9,7 +9,6 @@ sealed trait OrderInfo {
   def incomingCoin: BigDecimal
   def incomingCoinInfo: CoinInfo
   def outgoingType: Coin
-  def outgoingCoin: BigDecimal
   def outgoingCoinInfo: CoinInfo
   def deposit: String
 }
@@ -77,6 +76,17 @@ case class OrderComplete(orderId: String,
                          transactionURL: String)
     extends OrderInfo
 
+case class OrderContactSupport(orderId: String,
+                               status: OrderStatus,
+                               incomingType: Coin,
+                               incomingCoin: BigDecimal,
+                               incomingCoinInfo: CoinInfo,
+                               outgoingType: Coin,
+                               outgoingCoinInfo: CoinInfo,
+                               deposit: String,
+                               rate: BigDecimal)
+    extends OrderInfo
+
 object OrderInfo {
 
   implicit val openOrderNoDepositFormat  = Json.format[OpenOrderNoDeposit]
@@ -84,15 +94,17 @@ object OrderInfo {
   implicit val orderExpiredFormat        = Json.format[OrderExpired]
   implicit val orderReceivedFormat       = Json.format[OrderReceived]
   implicit val orderCompleteFormat       = Json.format[OrderComplete]
+  implicit val orderContactSupportFormat = Json.format[OrderContactSupport]
 
   implicit val format = new Format[OrderInfo] {
 
     def reads(json: JsValue) = ((json \ "status").as[OrderStatus], (json \ "type").as[Int]) match {
-      case (OrderStatus.NoDeposits, 1) => json.validate[OpenOrderNoDeposit]
-      case (OrderStatus.NoDeposits, 2) => json.validate[FixedOrderNoDeposit]
-      case (OrderStatus.Expired, _)    => json.validate[OrderExpired]
-      case (OrderStatus.Received, _)   => json.validate[OrderReceived]
-      case (OrderStatus.Complete, _)   => json.validate[OrderComplete]
+      case (OrderStatus.NoDeposits, 1)     => json.validate[OpenOrderNoDeposit]
+      case (OrderStatus.NoDeposits, 2)     => json.validate[FixedOrderNoDeposit]
+      case (OrderStatus.Expired, _)        => json.validate[OrderExpired]
+      case (OrderStatus.Received, _)       => json.validate[OrderReceived]
+      case (OrderStatus.Complete, _)       => json.validate[OrderComplete]
+      case (OrderStatus.ContactSupport, _) => json.validate[OrderContactSupport]
     }
 
     def writes(oi: OrderInfo): JsValue = oi match {
@@ -101,6 +113,7 @@ object OrderInfo {
       case o: OrderExpired        => Json.toJson(o)
       case o: OrderReceived       => Json.toJson(o)
       case o: OrderComplete       => Json.toJson(o)
+      case o: OrderContactSupport => Json.toJson(o)
     }
   }
 

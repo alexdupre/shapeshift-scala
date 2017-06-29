@@ -5,7 +5,7 @@ import java.util.concurrent.ExecutionException
 
 import com.alexdupre.shapeshift.{BuildInfo, ShapeShiftClient}
 import gigahorse._
-import gigahorse.support.asynchttpclient.Gigahorse
+import gigahorse.support.okhttp.Gigahorse
 import play.api.libs.json.{JsValue, Json}
 
 import scala.concurrent.{ExecutionContext, Future}

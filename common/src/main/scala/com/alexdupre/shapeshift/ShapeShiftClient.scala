@@ -87,11 +87,11 @@ class ShapeShiftClient(provider: ProviderAPI, pubApiKey: String = ShapeShiftClie
                                      outputSpecial: Option[(String, String)] = None,
                                      returnAddress: Option[String] = None): Future[OpenOrder] = {
     val req = Json.obj(
-        "pair"          -> market,
-        "withdrawal"    -> outputAddress,
-        "returnAddress" -> returnAddress,
-        "apiKey"        -> pubApiKey
-      ) ++ outputSpecial.fold(Json.obj()) {
+      "pair"          -> market,
+      "withdrawal"    -> outputAddress,
+      "returnAddress" -> returnAddress,
+      "apiKey"        -> pubApiKey
+    ) ++ outputSpecial.fold(Json.obj()) {
       case (key, value) => Json.obj(key -> value)
     }
     post[OpenOrder]("shift", req)
@@ -103,12 +103,12 @@ class ShapeShiftClient(provider: ProviderAPI, pubApiKey: String = ShapeShiftClie
                                            outputSpecial: Option[(String, String)] = None,
                                            returnAddress: Option[String] = None): Future[Order] = {
     val req = Json.obj(
-        "pair"          -> market,
-        "depositAmount" -> inputAmount,
-        "withdrawal"    -> outputAddress,
-        "returnAddress" -> returnAddress,
-        "apiKey"        -> pubApiKey
-      ) ++ outputSpecial.fold(Json.obj()) {
+      "pair"          -> market,
+      "depositAmount" -> inputAmount,
+      "withdrawal"    -> outputAddress,
+      "returnAddress" -> returnAddress,
+      "apiKey"        -> pubApiKey
+    ) ++ outputSpecial.fold(Json.obj()) {
       case (key, value) => Json.obj(key -> value)
     }
     post[Order]("sendamount", req, true)
@@ -120,12 +120,12 @@ class ShapeShiftClient(provider: ProviderAPI, pubApiKey: String = ShapeShiftClie
                                             outputSpecial: Option[(String, String)] = None,
                                             returnAddress: Option[String] = None): Future[Order] = {
     val req = Json.obj(
-        "pair"          -> market,
-        "amount"        -> outputAmount,
-        "withdrawal"    -> outputAddress,
-        "returnAddress" -> returnAddress,
-        "apiKey"        -> pubApiKey
-      ) ++ outputSpecial.fold(Json.obj()) {
+      "pair"          -> market,
+      "amount"        -> outputAmount,
+      "withdrawal"    -> outputAddress,
+      "returnAddress" -> returnAddress,
+      "apiKey"        -> pubApiKey
+    ) ++ outputSpecial.fold(Json.obj()) {
       case (key, value) => Json.obj(key -> value)
     }
     post[Order]("sendamount", req, true)

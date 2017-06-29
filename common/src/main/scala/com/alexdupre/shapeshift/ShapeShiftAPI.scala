@@ -1,7 +1,6 @@
 package com.alexdupre.shapeshift
 
 import com.alexdupre.shapeshift.models._
-import play.api.libs.json.JsValue
 
 import scala.concurrent.Future
 
