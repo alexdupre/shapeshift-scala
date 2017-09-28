@@ -6,6 +6,7 @@ import play.api.libs.json.Json
 case class CoinInfo(name: String,
                     symbol: Coin,
                     image: String,
+                    imageSmall: String,
                     status: Availability,
                     specialReturn: Option[Boolean],
                     specialOutgoing: Option[Boolean],

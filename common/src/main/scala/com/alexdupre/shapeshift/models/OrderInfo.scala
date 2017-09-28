@@ -1,7 +1,7 @@
 package com.alexdupre.shapeshift.models
 
 import com.alexdupre.shapeshift.models.OrderStatus.OrderStatus
-import play.api.libs.json.{Format, JsValue, Json}
+import play.api.libs.json.{Format, JsError, JsValue, Json}
 
 sealed trait OrderInfo {
   def status: OrderStatus
@@ -105,6 +105,7 @@ object OrderInfo {
       case (OrderStatus.Received, _)       => json.validate[OrderReceived]
       case (OrderStatus.Complete, _)       => json.validate[OrderComplete]
       case (OrderStatus.ContactSupport, _) => json.validate[OrderContactSupport]
+      case _                               => JsError("Unexpected order status")
     }
 
     def writes(oi: OrderInfo): JsValue = oi match {

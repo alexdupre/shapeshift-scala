@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory
 import play.api.libs.json._
 
 import scala.concurrent.{ExecutionContext, Future}
-import scala.language.{postfixOps, reflectiveCalls}
 
 class ShapeShiftClient(provider: ProviderAPI, pubApiKey: String = ShapeShiftClient.pubApiKey)(implicit ec: ExecutionContext)
     extends ShapeShiftAPI {

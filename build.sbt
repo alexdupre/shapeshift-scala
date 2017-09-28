@@ -1,14 +1,14 @@
 lazy val commonSettings = Seq(
   organization := "com.alexdupre.shapeshift",
   version := "2.0",
-  scalaVersion := "2.12.2",
-  crossScalaVersions := Seq("2.11.11", "2.12.2"),
+  scalaVersion := "2.12.3",
+  crossScalaVersions := Seq("2.11.11", "2.12.3"),
   scalacOptions ++= List("-feature", "-unchecked", "-deprecation", "-explaintypes", "-encoding", "UTF8", "-Xlint", "-language:_"),
   buildInfoKeys := Seq[BuildInfoKey](version),
   buildInfoPackage := organization.value,
   resolvers += Resolver.typesafeRepo("releases"),
   libraryDependencies ++= List(
-    "com.typesafe.play" %% "play-json"      % "2.6.1",
+    "com.typesafe.play" %% "play-json"      % "2.6.6",
     "org.slf4j"         % "slf4j-api"       % "1.7.25",
     "ch.qos.logback"    % "logback-core"    % "1.2.3" % "test",
     "ch.qos.logback"    % "logback-classic" % "1.2.3" % "test"
@@ -59,6 +59,6 @@ lazy val root = (project in file("."))
 
 lazy val gigahorse = provider("gigahorse").settings(
   libraryDependencies ++= List(
-    "com.eed3si9n" %% "gigahorse-okhttp" % "0.3.0"
+    "com.eed3si9n" %% "gigahorse-okhttp" % "0.3.1"
   )
 )
