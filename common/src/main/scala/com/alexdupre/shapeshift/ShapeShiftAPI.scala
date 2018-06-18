@@ -18,22 +18,28 @@ trait ShapeShiftAPI {
 
   def validateAddress(coin: Coin, address: String): Future[Unit]
 
-  def createOpenTransaction(market: Market,
-                            outputAddress: String,
-                            outputSpecial: Option[(String, String)] = None,
-                            returnAddress: Option[String] = None): Future[OpenOrder]
+  def createOpenTransaction(
+      market: Market,
+      outputAddress: String,
+      outputSpecial: Option[(String, String)] = None,
+      returnAddress: Option[String] = None
+  ): Future[OpenOrder]
 
-  def createFixedInputTransaction(market: Market,
-                                  inputAmount: BigDecimal,
-                                  outputAddress: String,
-                                  outputSpecial: Option[(String, String)] = None,
-                                  returnAddress: Option[String] = None): Future[Order]
+  def createFixedInputTransaction(
+      market: Market,
+      inputAmount: BigDecimal,
+      outputAddress: String,
+      outputSpecial: Option[(String, String)] = None,
+      returnAddress: Option[String] = None
+  ): Future[Order]
 
-  def createFixedOutputTransaction(market: Market,
-                                   outputAmount: BigDecimal,
-                                   outputAddress: String,
-                                   outputSpecial: Option[(String, String)] = None,
-                                   returnAddress: Option[String] = None): Future[Order]
+  def createFixedOutputTransaction(
+      market: Market,
+      outputAmount: BigDecimal,
+      outputAddress: String,
+      outputSpecial: Option[(String, String)] = None,
+      returnAddress: Option[String] = None
+  ): Future[Order]
 
   def quoteFixedInputTransaction(market: Market, inputAmount: BigDecimal): Future[Quote]
 

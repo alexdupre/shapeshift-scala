@@ -81,10 +81,12 @@ class ShapeShiftClient(provider: ProviderAPI, pubApiKey: String = ShapeShiftClie
     get[JsObject](s"validateAddress/$address/$coin").map(_ => ())
   }
 
-  override def createOpenTransaction(market: Market,
-                                     outputAddress: String,
-                                     outputSpecial: Option[(String, String)] = None,
-                                     returnAddress: Option[String] = None): Future[OpenOrder] = {
+  override def createOpenTransaction(
+      market: Market,
+      outputAddress: String,
+      outputSpecial: Option[(String, String)] = None,
+      returnAddress: Option[String] = None
+  ): Future[OpenOrder] = {
     val req = Json.obj(
       "pair"          -> market,
       "withdrawal"    -> outputAddress,
@@ -96,11 +98,13 @@ class ShapeShiftClient(provider: ProviderAPI, pubApiKey: String = ShapeShiftClie
     post[OpenOrder]("shift", req)
   }
 
-  override def createFixedInputTransaction(market: Market,
-                                           inputAmount: BigDecimal,
-                                           outputAddress: String,
-                                           outputSpecial: Option[(String, String)] = None,
-                                           returnAddress: Option[String] = None): Future[Order] = {
+  override def createFixedInputTransaction(
+      market: Market,
+      inputAmount: BigDecimal,
+      outputAddress: String,
+      outputSpecial: Option[(String, String)] = None,
+      returnAddress: Option[String] = None
+  ): Future[Order] = {
     val req = Json.obj(
       "pair"          -> market,
       "depositAmount" -> inputAmount,
@@ -113,11 +117,13 @@ class ShapeShiftClient(provider: ProviderAPI, pubApiKey: String = ShapeShiftClie
     post[Order]("sendamount", req, true)
   }
 
-  override def createFixedOutputTransaction(market: Market,
-                                            outputAmount: BigDecimal,
-                                            outputAddress: String,
-                                            outputSpecial: Option[(String, String)] = None,
-                                            returnAddress: Option[String] = None): Future[Order] = {
+  override def createFixedOutputTransaction(
+      market: Market,
+      outputAmount: BigDecimal,
+      outputAddress: String,
+      outputSpecial: Option[(String, String)] = None,
+      returnAddress: Option[String] = None
+  ): Future[Order] = {
     val req = Json.obj(
       "pair"          -> market,
       "amount"        -> outputAmount,

@@ -13,79 +13,85 @@ sealed trait OrderInfo {
   def deposit: String
 }
 
-case class OpenOrderNoDeposit(status: OrderStatus,
-                              incomingType: Coin,
-                              incomingCoin: BigDecimal,
-                              incomingCoinInfo: CoinInfo,
-                              outgoingType: Coin,
-                              outgoingCoin: BigDecimal,
-                              outgoingCoinInfo: CoinInfo,
-                              deposit: String,
-                              withdrawal: String)
-    extends OrderInfo
+case class OpenOrderNoDeposit(
+    status: OrderStatus,
+    incomingType: Coin,
+    incomingCoin: BigDecimal,
+    incomingCoinInfo: CoinInfo,
+    outgoingType: Coin,
+    outgoingCoin: BigDecimal,
+    outgoingCoinInfo: CoinInfo,
+    deposit: String,
+    withdrawal: String
+) extends OrderInfo
 
-case class FixedOrderNoDeposit(status: OrderStatus,
-                               incomingType: Coin,
-                               incomingCoin: BigDecimal,
-                               incomingCoinInfo: CoinInfo,
-                               outgoingType: Coin,
-                               outgoingCoin: BigDecimal,
-                               outgoingCoinInfo: CoinInfo,
-                               deposit: String,
-                               withdrawal: String,
-                               timeRemaining: BigDecimal,
-                               rate: BigDecimal)
-    extends OrderInfo
+case class FixedOrderNoDeposit(
+    status: OrderStatus,
+    incomingType: Coin,
+    incomingCoin: BigDecimal,
+    incomingCoinInfo: CoinInfo,
+    outgoingType: Coin,
+    outgoingCoin: BigDecimal,
+    outgoingCoinInfo: CoinInfo,
+    deposit: String,
+    withdrawal: String,
+    timeRemaining: BigDecimal,
+    rate: BigDecimal
+) extends OrderInfo
 
-case class OrderExpired(status: OrderStatus,
-                        incomingType: Coin,
-                        incomingCoin: BigDecimal,
-                        incomingCoinInfo: CoinInfo,
-                        outgoingType: Coin,
-                        outgoingCoin: BigDecimal,
-                        outgoingCoinInfo: CoinInfo,
-                        deposit: String,
-                        withdrawal: String,
-                        timeRemaining: BigDecimal,
-                        rate: BigDecimal)
-    extends OrderInfo
+case class OrderExpired(
+    status: OrderStatus,
+    incomingType: Coin,
+    incomingCoin: BigDecimal,
+    incomingCoinInfo: CoinInfo,
+    outgoingType: Coin,
+    outgoingCoin: BigDecimal,
+    outgoingCoinInfo: CoinInfo,
+    deposit: String,
+    withdrawal: String,
+    timeRemaining: BigDecimal,
+    rate: BigDecimal
+) extends OrderInfo
 
-case class OrderReceived(orderId: String,
-                         status: OrderStatus,
-                         incomingType: Coin,
-                         incomingCoin: BigDecimal,
-                         incomingCoinInfo: CoinInfo,
-                         outgoingType: Coin,
-                         outgoingCoin: BigDecimal,
-                         outgoingCoinInfo: CoinInfo,
-                         deposit: String)
-    extends OrderInfo
+case class OrderReceived(
+    orderId: String,
+    status: OrderStatus,
+    incomingType: Coin,
+    incomingCoin: BigDecimal,
+    incomingCoinInfo: CoinInfo,
+    outgoingType: Coin,
+    outgoingCoin: BigDecimal,
+    outgoingCoinInfo: CoinInfo,
+    deposit: String
+) extends OrderInfo
 
-case class OrderComplete(orderId: String,
-                         status: OrderStatus,
-                         incomingType: Coin,
-                         incomingCoin: BigDecimal,
-                         incomingCoinInfo: CoinInfo,
-                         outgoingType: Coin,
-                         outgoingCoin: BigDecimal,
-                         outgoingCoinInfo: CoinInfo,
-                         deposit: String,
-                         withdraw: String,
-                         rate: BigDecimal,
-                         transaction: String,
-                         transactionURL: String)
-    extends OrderInfo
+case class OrderComplete(
+    orderId: String,
+    status: OrderStatus,
+    incomingType: Coin,
+    incomingCoin: BigDecimal,
+    incomingCoinInfo: CoinInfo,
+    outgoingType: Coin,
+    outgoingCoin: BigDecimal,
+    outgoingCoinInfo: CoinInfo,
+    deposit: String,
+    withdraw: String,
+    rate: BigDecimal,
+    transaction: String,
+    transactionURL: String
+) extends OrderInfo
 
-case class OrderContactSupport(orderId: String,
-                               status: OrderStatus,
-                               incomingType: Coin,
-                               incomingCoin: BigDecimal,
-                               incomingCoinInfo: CoinInfo,
-                               outgoingType: Coin,
-                               outgoingCoinInfo: CoinInfo,
-                               deposit: String,
-                               rate: BigDecimal)
-    extends OrderInfo
+case class OrderContactSupport(
+    orderId: String,
+    status: OrderStatus,
+    incomingType: Coin,
+    incomingCoin: BigDecimal,
+    incomingCoinInfo: CoinInfo,
+    outgoingType: Coin,
+    outgoingCoinInfo: CoinInfo,
+    deposit: String,
+    rate: BigDecimal
+) extends OrderInfo
 
 object OrderInfo {
 

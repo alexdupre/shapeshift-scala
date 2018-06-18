@@ -4,12 +4,14 @@ import play.api.libs.json.Json
 import play.api.libs.functional.syntax._
 import play.api.libs.json._
 
-case class MarketInfo(pair: Market,
-                      rate: BigDecimal,
-                      limit: BigDecimal,
-                      maxLimit: BigDecimal,
-                      min: BigDecimal,
-                      minerFee: Option[BigDecimal])
+case class MarketInfo(
+    pair: Market,
+    rate: BigDecimal,
+    limit: BigDecimal,
+    maxLimit: BigDecimal,
+    min: BigDecimal,
+    minerFee: Option[BigDecimal]
+)
 
 object MarketInfo {
 
