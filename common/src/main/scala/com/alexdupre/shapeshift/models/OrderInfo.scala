@@ -93,6 +93,20 @@ case class OrderContactSupport(
     rate: BigDecimal
 ) extends OrderInfo
 
+case class OrderResolved(
+    orderId: String,
+    status: OrderStatus,
+    incomingType: Coin,
+    incomingCoin: BigDecimal,
+    incomingCoinInfo: CoinInfo,
+    outgoingType: Coin,
+    outgoingCoinInfo: CoinInfo,
+    deposit: String,
+    withdraw: String,
+    transaction: String,
+    transactionURL: String
+) extends OrderInfo
+
 object OrderInfo {
 
   implicit val openOrderNoDepositFormat  = Json.format[OpenOrderNoDeposit]
@@ -101,6 +115,7 @@ object OrderInfo {
   implicit val orderReceivedFormat       = Json.format[OrderReceived]
   implicit val orderCompleteFormat       = Json.format[OrderComplete]
   implicit val orderContactSupportFormat = Json.format[OrderContactSupport]
+  implicit val orderResolvedFormat       = Json.format[OrderResolved]
 
   implicit val format = new Format[OrderInfo] {
 
@@ -111,6 +126,7 @@ object OrderInfo {
       case (OrderStatus.Received, _)       => json.validate[OrderReceived]
       case (OrderStatus.Complete, _)       => json.validate[OrderComplete]
       case (OrderStatus.ContactSupport, _) => json.validate[OrderContactSupport]
+      case (OrderStatus.Resolved, _)       => json.validate[OrderResolved]
       case _                               => JsError("Unexpected order status")
     }
 
@@ -121,6 +137,7 @@ object OrderInfo {
       case o: OrderReceived       => Json.toJson(o)
       case o: OrderComplete       => Json.toJson(o)
       case o: OrderContactSupport => Json.toJson(o)
+      case o: OrderResolved       => Json.toJson(o)
     }
   }
 

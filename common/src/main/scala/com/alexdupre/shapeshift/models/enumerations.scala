@@ -19,6 +19,7 @@ object OrderStatus extends Enumeration {
   val Received       = Value("received")
   val Complete       = Value("complete")
   val ContactSupport = Value("contact_support")
+  val Resolved       = Value("resolved")
 
   implicit val format = Format(Enumeration.reads(OrderStatus), Enumeration.writes)
 }
