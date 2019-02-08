@@ -1,14 +1,14 @@
 lazy val commonSettings = Seq(
   organization := "com.alexdupre.shapeshift",
-  version := "2.2",
-  scalaVersion := "2.12.7",
-  crossScalaVersions := Seq("2.11.12", "2.12.7"),
+  version := "2.3",
+  scalaVersion := "2.12.8",
+  crossScalaVersions := Seq("2.11.12", "2.12.8"),
   scalacOptions ++= List("-feature", "-unchecked", "-deprecation", "-explaintypes", "-encoding", "UTF8", "-Xlint", "-language:_"),
   buildInfoKeys := Seq[BuildInfoKey](version),
   buildInfoPackage := organization.value,
   resolvers += Resolver.typesafeRepo("releases"),
   libraryDependencies ++= List(
-    "com.typesafe.play" %% "play-json"      % "2.6.10",
+    "com.typesafe.play" %% "play-json"      % "2.7.1",
     "org.slf4j"         % "slf4j-api"       % "1.7.25",
     "ch.qos.logback"    % "logback-core"    % "1.2.3" % "test",
     "ch.qos.logback"    % "logback-classic" % "1.2.3" % "test"
