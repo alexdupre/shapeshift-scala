@@ -6,25 +6,25 @@ An asynchronous / non-blocking Scala library for the ShapeShift API.
 
 ## Artifacts
 
-The latest release of the library is cross-compiled with both Scala 2.11, Scala 2.12 and Scala 2.13, and supports only Gigahorse with OkHttp backend as HTTP
-provider to avoid AHC/Netty version conflicts.
+The latest release of the library is cross-compiled for Scala 2.11, 2.12 and 2.13, and
+supports only Gigahorse with OkHttp backend as HTTP provider to avoid AHC/Netty version conflicts.
 
 Previous versions of the library support only Scala 2.11 and were cross-compiled
 with different versions of Dispatch-Reboot, Gigahorse and Play-WS to fit every scenario.
 
 Choose the appropriate artifact based on your needs:
 
-| Version | Artifact Id             | HTTP Provider   | AHC   | Netty   | Play-JSON | Scala       |
-| ------- | ----------------------- | --------------- | ----- | ------- | --------- | ----------- |
+| Version | Artifact Id             | HTTP Provider   | AHC   | Netty   | Play-JSON | Scala              |
+| ------- | ----------------------- | --------------- | ----- | ------- | --------- | ------------------ |
 | 2.4     | shapeshift-gigahorse    | Gigahorse 0.5.x | N/A   | N/A     | 2.7.x     | 2.11 & 2.12 & 2.13 |
-| 2.3     | shapeshift-gigahorse    | Gigahorse 0.3.x | N/A   | N/A     | 2.7.x     | 2.11 & 2.12 |
-| 2.2     | shapeshift-gigahorse    | Gigahorse 0.3.x | N/A   | N/A     | 2.6.x     | 2.11 & 2.12 |
-| 1.1     | shapeshift-dispatch0112 | Dispatch 0.11.2 | 1.8.x | 3.9.x   | 2.3.x     | 2.11 Only   |
-| 1.1     | shapeshift-dispatch0113 | Dispatch 0.11.3 | 1.9.x | 3.10.x  | 2.4.x     | 2.11 Only   |
-| 1.1     | shapeshift-gigahorse    | Gigahorse 0.2.x | 2.0.x | 4.0.x   | 2.5.x     | 2.11 Only   |
-| 1.1     | shapeshift-playws23     | Play WS 2.3.x   | 1.8.x | 3.9.x   | 2.3.x     | 2.11 Only   |
-| 1.1     | shapeshift-playws24     | Play WS 2.4.x   | 1.9.x | 3.10.x  | 2.4.x     | 2.11 Only   |
-| 1.1     | shapeshift-playws25     | Play WS 2.5.x   | 2.0.x | 4.0.x   | 2.5.x     | 2.11 Only   |
+| 2.3     | shapeshift-gigahorse    | Gigahorse 0.3.x | N/A   | N/A     | 2.7.x     | 2.11 & 2.12        |
+| 2.2     | shapeshift-gigahorse    | Gigahorse 0.3.x | N/A   | N/A     | 2.6.x     | 2.11 & 2.12        |
+| 1.1     | shapeshift-dispatch0112 | Dispatch 0.11.2 | 1.8.x | 3.9.x   | 2.3.x     | 2.11 Only          |
+| 1.1     | shapeshift-dispatch0113 | Dispatch 0.11.3 | 1.9.x | 3.10.x  | 2.4.x     | 2.11 Only          |
+| 1.1     | shapeshift-gigahorse    | Gigahorse 0.2.x | 2.0.x | 4.0.x   | 2.5.x     | 2.11 Only          |
+| 1.1     | shapeshift-playws23     | Play WS 2.3.x   | 1.8.x | 3.9.x   | 2.3.x     | 2.11 Only          |
+| 1.1     | shapeshift-playws24     | Play WS 2.4.x   | 1.9.x | 3.10.x  | 2.4.x     | 2.11 Only          |
+| 1.1     | shapeshift-playws25     | Play WS 2.5.x   | 2.0.x | 4.0.x   | 2.5.x     | 2.11 Only          |
 
 and then, if you're using SBT, add the following line to your build file:
 
