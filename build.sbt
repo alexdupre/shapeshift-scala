@@ -9,7 +9,7 @@ lazy val commonSettings = Seq(
   resolvers += Resolver.typesafeRepo("releases"),
   libraryDependencies ++= List(
     "com.typesafe.play" %% "play-json"      % "2.7.4",
-    "org.slf4j"         % "slf4j-api"       % "1.7.25",
+    "org.slf4j"         % "slf4j-api"       % "1.7.26",
     "ch.qos.logback"    % "logback-core"    % "1.2.3" % "test",
     "ch.qos.logback"    % "logback-classic" % "1.2.3" % "test"
   ),
