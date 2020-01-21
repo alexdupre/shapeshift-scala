@@ -17,7 +17,7 @@ trait ShapeShift {
     }
   }
 
-  def executeT[T](f: ShapeShiftAPI => Future[Traversable[T]]) = {
+  def executeT[T](f: ShapeShiftAPI => Future[Iterable[T]]) = {
     try {
       val r = Await.result(f(getClient()), 30 seconds)
       r.foreach(println)
