@@ -16,7 +16,7 @@ Choose the appropriate artifact based on your needs:
 
 | Version | Artifact Id             | HTTP Provider   | AHC   | Netty   | Play-JSON | Scala              |
 | ------- | ----------------------- | --------------- | ----- | ------- | --------- | ------------------ |
-| 2.5     | shapeshift-gigahorse    | Gigahorse 0.5.x | N/A   | N/A     | 2.8.x     | 2.12 & 2.13 |
+| 2.5     | shapeshift-gigahorse    | Gigahorse 0.5.x | N/A   | N/A     | 2.8.x     | 2.12 & 2.13        |
 | 2.4     | shapeshift-gigahorse    | Gigahorse 0.5.x | N/A   | N/A     | 2.7.x     | 2.11 & 2.12 & 2.13 |
 | 2.3     | shapeshift-gigahorse    | Gigahorse 0.3.x | N/A   | N/A     | 2.7.x     | 2.11 & 2.12        |
 | 2.2     | shapeshift-gigahorse    | Gigahorse 0.3.x | N/A   | N/A     | 2.6.x     | 2.11 & 2.12        |

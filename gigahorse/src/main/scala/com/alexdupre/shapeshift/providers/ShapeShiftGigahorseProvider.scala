@@ -27,11 +27,12 @@ class ShapeShiftGigahorseProvider(http: HttpClient)(implicit ec: ExecutionContex
 
   private def execute(req: Request): Future[ProviderResponse] = {
     http.run(req) map { r =>
-      val js = try {
-        Json.parse(r.bodyAsString)
-      } catch {
-        case e: Exception => sys.error("ShapeShift Protocol Exception")
-      }
+      val js =
+        try {
+          Json.parse(r.bodyAsString)
+        } catch {
+          case e: Exception => sys.error("ShapeShift Protocol Exception")
+        }
       ProviderResponse(r.status, js)
     } recover {
       case e: ExecutionException => throw e.getCause
