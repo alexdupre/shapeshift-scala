@@ -8,7 +8,7 @@ object Availability extends Enumeration {
   val Available   = Value("available")
   val Unavailable = Value("unavailable")
 
-  implicit val format = Format(Enumeration.reads(Availability), Enumeration.writes)
+  implicit val format = Format[Value](Enumeration.reads(Availability), Enumeration.writes)
 }
 
 object OrderStatus extends Enumeration {
@@ -21,7 +21,7 @@ object OrderStatus extends Enumeration {
   val ContactSupport = Value("contact_support")
   val Resolved       = Value("resolved")
 
-  implicit val format = Format(Enumeration.reads(OrderStatus), Enumeration.writes)
+  implicit val format = Format[Value](Enumeration.reads(OrderStatus), Enumeration.writes)
 }
 
 object Enumeration {
